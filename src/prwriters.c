@@ -26,6 +26,8 @@ void priority_readers_writers_threaded(){
     pthread_t writers[WRITERS_NUM];
     pthread_t readers[READERS_NUM];
     int tmp[WRITERS_NUM];
+    pthread_mutex_init(&wlock,NULL);
+    pthread_mutex_init(&rlock,NULL);
     for(int w=0;w<WRITERS_NUM;w++){
         tmp[w] =w;
         pthread_create(&writers[w],NULL,update_resource,&tmp[w]);
@@ -39,5 +41,7 @@ void priority_readers_writers_threaded(){
     for(int w=0;w<READERS_NUM;w++){
         pthread_join(readers[w],NULL);
     }
+    pthread_mutex_destroy(&wlock);
+    pthread_mutex_destroy(&rlock);
 
 }
