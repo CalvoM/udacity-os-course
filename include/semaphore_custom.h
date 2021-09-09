@@ -9,6 +9,7 @@ typedef enum{
 
 typedef struct semaphore{
     int count;
+    int limit;
     pthread_mutex_t locker;
     pthread_cond_t is_okay;
     init_t is_init;
