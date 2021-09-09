@@ -1,5 +1,5 @@
 #include "include/questions.h"
 
 int main(){
-    counter_threaded();
+    priority_readers_writers_threaded();
 }

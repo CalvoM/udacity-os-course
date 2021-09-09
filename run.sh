@@ -2,7 +2,6 @@
 cmd=$1
 if [ $cmd == 'build' ]
 then
-    echo Building project
     cd build/
     cmake .. 
     cmake --build .
@@ -11,6 +10,5 @@ then
     strip os_programming
 elif [ $cmd == "run" ]
 then
-    echo Running project
     ./build/os_programming
 fi
