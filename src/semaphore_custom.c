@@ -52,7 +52,8 @@ void semaphore_post(semaphore_t *s){
         return;
     }
     s->count++;
-    pthread_cond_signal(&(s->is_okay));
+    if(s->count > 0)
+        pthread_cond_signal(&(s->is_okay));
     pthread_mutex_unlock(&(s->locker));
 }
 void semaphore_wait(semaphore_t *s){
