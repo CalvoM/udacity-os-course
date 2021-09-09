@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <math.h>
 #include <stdlib.h>
+#include <semaphore.h>
 
 #define debug(...) \
     printf("[%s] ",__func__); \
