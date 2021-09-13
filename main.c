@@ -1,5 +1,9 @@
 #include "include/questions.h"
 
-int main(){
-    priority_readers_writers_threaded();
+int main(int argc, char **argv){
+    if(argc != 3){
+        printf("Usage: <address> <port>");
+        return -1;
+    }
+    client_connect(argv);
 }
