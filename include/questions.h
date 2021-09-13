@@ -14,5 +14,6 @@
 void priority_readers_writers_threaded();
 void counter_threaded();
 int client_connect(char **options);
+int spawn_server(char *port);
 
 #endif
