@@ -10,7 +10,7 @@
 int client_connect(char **options){
     char *address = options[1];
     char *port = options[2];
-    printf("Host: \"%s\", Port:\"%s\"",address,port);
+    printf("Host: \"%s\", Port:\"%s\"\r\n",address,port);
     int restype;
     struct addrinfo hints, *res;
     memset(&hints,0,sizeof hints);
@@ -31,6 +31,5 @@ int client_connect(char **options){
         printf("Could not connect to \"%s:%s\"",address,port);
         return restype;
     }
-    close(sockfd);
-    return restype;
+    return close(sockfd);
 }

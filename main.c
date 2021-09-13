@@ -1,9 +1,10 @@
 #include "include/questions.h"
 
 int main(int argc, char **argv){
-    if(argc != 3){
-        printf("Usage: <address> <port>");
+    if(argc != 2){
+        printf("Usage: <port>");
         return -1;
     }
-    client_connect(argv);
+    char *port = argv[1];
+    spawn_server(port);
 }
