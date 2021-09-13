@@ -47,7 +47,21 @@ int spawn_server(char *port){
         printf("accept error\n");
         return -1;
     }
-    printf("Received connection from client\n");
+    char msg[256];
+    if(recv(client_fd,msg,256,0) ==-1){
+        printf("Error recv from client\n");
+        return -1;
+    }
+    for(int i=0;i<strlen(msg);i++){
+        if(msg[i]>='a' && msg[i]<='z'){
+            msg[i] = msg[i] -32;
+        }
+    }
+    char rec[256];
+    if(send(client_fd,msg,strlen(msg),0) == -1){
+        printf("Error sending\n");
+        return -1;
+    }
     return close(sockfd);
 
 }

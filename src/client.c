@@ -5,12 +5,13 @@
 #include <netdb.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include <errno.h>
 #include "../include/questions.h"
 
 int client_connect(char **options){
-    char *address = options[1];
-    char *port = options[2];
-    printf("Host: \"%s\", Port:\"%s\"\r\n",address,port);
+    char *address = options[2];
+    char *port = options[3];
+    char *msg = options[4];
     int restype;
     struct addrinfo hints, *res;
     memset(&hints,0,sizeof hints);
@@ -31,5 +32,16 @@ int client_connect(char **options){
         printf("Could not connect to \"%s:%s\"",address,port);
         return restype;
     }
+    if(send(sockfd,msg,strlen(msg),0) == -1){
+        printf("%s\n",strerror(errno));
+        return restype;
+    }
+    printf("Message sent\r\n");
+    char buf[strlen(msg)+1];
+    if(recv(sockfd,buf,sizeof buf,0) == -1){
+        printf("Error receiving from server\n");
+        return -1;
+    }
+    printf("FROM SERVER: %s\n",buf);
     return close(sockfd);
 }
