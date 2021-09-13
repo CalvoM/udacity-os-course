@@ -13,5 +13,6 @@
     printf(__VA_ARGS__)
 void priority_readers_writers_threaded();
 void counter_threaded();
+int client_connect(char **options);
 
 #endif
